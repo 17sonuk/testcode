@@ -1,0 +1,32 @@
+
+function result(text){
+  let inputtext=text.split("");
+  let answer="";
+  for(let i=0; i<inputtext.length;i++){
+    if(i==0){
+      answer+=inputtext[0];
+    }
+    else{
+      if(inputtext[i].charCodeAt(0)>=65 && inputtext[i].charCodeAt(0)<=90 ){
+      answer+=". "+inputtext[i];
+      }else if(inputtext[i].charCodeAt(0)==46){
+        answer+=inputtext[i];
+        i=i+1;
+         for(let j=i;j<inputtext.length;j++){
+           if(inputtext[i].charCodeAt(0)==32){
+             i=i+1;
+           }else{
+             break;
+           }
+         }
+        let temp=inputtext[i].toUpperCase();
+           answer+=" "+temp;
+      }else{
+        answer+=inputtext[i];
+      }
+    }
+}
+ return answer.replace(" .",".")
+}
+let text="John have  an apple The sky is blue. they get a coin";
+ console.log(result(text))
