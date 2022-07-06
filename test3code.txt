@@ -1,0 +1,46 @@
+function evaluate(input){
+const packaging=[
+  {
+    id:1,title:"kegs",size:30000
+  },
+  {
+    id:2,title:"bottle",size:330
+  },
+  {
+    id:3,title:"can",size:300
+  },{
+  id:4,title:"container",size:1000000
+  }
+]
+
+
+weeks_in_year=52.143
+let data;
+for(let i=0;i<packaging.length;i++){
+  if(input['packaging']==packaging[i]['id']){
+    data=packaging[i];
+    break;
+  }
+}
+let units_per_order=Math.ceil((input['quantityPerOrder']*1000)/data['size'])
+// console.log(Math.ceil(units_per_order))
+total_order_in_year=Math.ceil(52.143/input.orderFrequency)
+totalvolume=(total_order_in_year*input.quantityPerOrder)/100
+// console.log(totalvolume)
+result={
+  totalVolumeInYear:totalvolume,
+  packaging:data.title,
+  unitsPerOrder:units_per_order
+}
+return result
+}
+
+let input={
+  id:1,
+  title:"Beer for a pub",
+  packaging:2,
+  orderFrequency:3,
+  quantityPerOrder:1000,
+  createdAt:1589265720000
+}
+console.log(evaluate(input))
